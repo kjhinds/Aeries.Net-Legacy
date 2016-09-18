@@ -39,9 +39,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="app\background.js" />
+    <Content Include="app\contentscript.js" />
+    <Content Include="app\img\128px-Data-transfer.svg.png" />
+    <Content Include="app\img\32px-Data-transfer.svg.png" />
     <Content Include="app\img\icon.png" />
     <Content Include="app\popup.html" />
     <Content Include="app\popup.js" />
+    <Content Include="app\roster.html" />
+    <Content Include="app\roster.js" />
+    <Content Include="app\script.js" />
+    <Content Include="credits.txt" />
     <Content Include="Properties\build\lib\Ionic.Zip.DLL" />
     <Content Include="Properties\build\lib\MSBuild.ExtensionPack.dll" />
     <Content Include="screenshots\screenshot.png" />

@@ -1,31 +1,65 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Getting Started Extension's Popup</title>
+<head>
     <style>
-      body {
-        min-width: 357px;
-        overflow-x: hidden;
-      }
+        body {
+            min-width: 580px;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
 
-      img {
-        margin: 5px;
-        border: 2px solid black;
-        vertical-align: middle;
-        width: 75px;
-        height: 75px;
-      }
+        textarea {
+            width: 580px;
+        }
+
+        input#assignment {
+            width: 80px;
+        }
+
+        input#save {
+            font-weight: bold;
+            width: auto;
+        }
+
+        input#close {
+            font-weight: bold;
+            width: auto;
+        }
+
+        input#getroster {
+            font-weight: bold;
+            width: auto;
+            float: right;
+        }
     </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
-     -->
     <script src="popup.js"></script>
-  </head>
-  <body>
-  </body>
+</head>
+<body>
+    <form id="importscores" name="importscores">
+        <p>
+            <label for="assignment">Assignment #</label> <br />
+            <input type="text" id="assignment" name="assignment" size="50" value="" /><br />
+        </p>
+        <p>
+            <label for="StuName">Student Identification Type</label> <br />
+            <input type="radio" id="StuName" name="idtype" value="StuName" checked> Student Name
+            <input type="radio" id="StuNum" name="idtype" value="StuNum"> Student Number
+            <input type="radio" id="PermID" name="idtype" value="PermID" disabled> Perm. ID (Not working)
+        </p>
+        <p>
+            <label for="scores">Students and Scores list [tab-delimited or comma-delimited]<br />
+            Format: Last Name, First Name, Score<br />
+            Or: Student Number, Score</label><br />
+            <textarea id="scores" name="scores" rows="10" cols="80"></textarea>
+        </p>
+        <p>
+            <input id="save" type="submit" value="Import Scores" />
+            <input id="close" type="button" value="Close" name="closebtn" />
+            <input id="getroster" type="button" value="Get Roster" name="getroster" />
+        </p>
+    </form>
+</body>
 </html>
+
 
