@@ -13,6 +13,7 @@ function importScores() {
         command: "import"
     };
     sendToContentScript(dataObj);
+    sendToContentScript({ command: "getRoster" });  //I don't understand why I need to do this to get it to work.
 };
 
 function repackScores(scores, identType) {
@@ -44,6 +45,7 @@ function repackScores(scores, identType) {
 };
 
 function sendToContentScript(message) {
+    console.log(message);
     chrome.tabs.getSelected(null, function (tab) {
         chrome.tabs.sendMessage(tab.id, { command: message.command, message: message }, function () {
         });

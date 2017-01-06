@@ -41,8 +41,6 @@ window.addEventListener('message', function(event) {
                 break;
             case "openPopup":
                 saveData({ StuList: event.data.text });
-                console.log("Made it to openPopup");
-                console.log(event.data.text);
                 break;
             default:
                 return false;

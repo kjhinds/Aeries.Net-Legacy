@@ -6,15 +6,12 @@ var inputScore = function (StudentNumber, StudentScore, Assignment) {
         for (var sn = 0; sn < students[row].attributes.length; sn++) {
             if (students[row].attributes[sn].name == "data-sn" &&
                 students[row].attributes[sn].value == StudentNumber) {
-                //console.log("worked!");
                 foundName = true;
                     var assignments = students[row].cells;
                     for (var an = 0; an < assignments.length; an++) {
                         for (var attr = 0; attr < assignments[an].attributes.length; attr++) {
                             if (assignments[an].attributes[attr].name == "data-an" &&
                                 assignments[an].attributes[attr].value == Assignment) {
-                                //console.log(assignments[an]);
-                                //console.log(StudentScore);
 
                                 assignments[an].children[0].textContent = StudentScore;
                                 assignments[an].dispatchEvent(new MouseEvent("click", {
@@ -54,8 +51,6 @@ var inputScore = function (StudentNumber, StudentScore, Assignment) {
 };
 
 var createScoresTable = function (scores, identtype) {
-    //console.log(scores);
-    //console.log(identtype);
     if(identtype == 'StuNum') {
         return scores;
     } else if(identtype == 'StuName') {
@@ -149,7 +144,8 @@ var handleImport = function (scores, identType, assignment) {
     }
 }
 
-window.addEventListener('message', function(event) {
+window.addEventListener('message', function (event) {
+    console.log("message");
     if (event.origin != "https://teacherportal.abcusd.us") {
         return false;
     } else {
