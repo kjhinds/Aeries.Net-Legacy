@@ -1,7 +1,7 @@
 {
   "description": "This extension allows import of csv data into Aeries.Net",
   "icons": {"128" : "img/128px-Data-transfer.svg.png"},
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Aeries.Net Web Import",
   "permissions": [
     "https://teacherportal.abcusd.us/",
@@ -20,6 +20,6 @@
       "matches": ["https://teacherportal.abcusd.us/Aeries.Net/gradebook/*/*/*"]
     }
   ],
-  "version": "1.4",
+  "version": "1.5",
   "web_accessible_resources":  ["script.js","popup.js","roster.js","roster.html"]
 }

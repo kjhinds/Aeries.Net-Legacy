@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <style>
@@ -34,23 +34,26 @@
         }
     </style>
     <script src="popup.js"></script>
+<meta charset="ISO-8859-1">
 </head>
 <body>
     <form id="importscores" name="importscores">
         <p>
-            <label for="assignment">Assignment #</label> <br />
-            <input type="text" id="assignment" name="assignment" size="50" value="" /><br />
-        </p>
-        <p>
-            <label for="StuName">Student Identification Type</label> <br />
+            <label for="StuName"><b>Student Identification Type</b></label> <br />
             <input type="radio" id="StuName" name="idtype" value="StuName" checked> Student Name
             <input type="radio" id="StuNum" name="idtype" value="StuNum"> Student Number
             <input type="radio" id="PermID" name="idtype" value="PermID" disabled> Perm. ID (Not working)
         </p>
         <p>
-            <label for="scores">Students and Scores list [tab-delimited or comma-delimited]<br />
-            Format: Last Name, First Name, Score<br />
-            Or: Student Number, Score</label><br />
+            <label for="scores"><b>Students and Scores list [tab-delimited or comma-delimited]</b><br />
+            Use a header row with: Last Name, First Name, Assignment #, Assignment #, etc.<br />
+            Or: Student Number, Assignment #, Assignment #, etc<br />
+            Followed by a row for each student to import data for<br /><br />
+            <i>Example:</i><br />
+            Last Name, First Name, 1, 2, 3, 4, 5<br />
+            Smith, John, 18, 7, 15, 8, 10<br />
+            Doe, Jane, 20, 9, 14, 9, 10<br />
+            Jones, William, 13, 6, 11, 8, 9<br /></label>
             <textarea id="scores" name="scores" rows="10" cols="80"></textarea>
         </p>
         <p>
@@ -61,5 +64,3 @@
     </form>
 </body>
 </html>
-
-

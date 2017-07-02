@@ -1,30 +1,32 @@
-var inputScore = function (StudentNumber, StudentScore, Assignment) {
+var inputScore = function (StudentNumber, StudentScore, Assignments) {
     //document.getElementsByClassName("assignments")[0].rows[0].cells[7].children[0].textContent = "100";
-    var foundName = false;
+	var foundName = false;
     var students = document.getElementsByClassName("assignments")[0].rows;
-    for (var row = 0; row < students.length; row++) {
-        for (var sn = 0; sn < students[row].attributes.length; sn++) {
-            if (students[row].attributes[sn].name == "data-sn" &&
-                students[row].attributes[sn].value == StudentNumber) {
-                foundName = true;
-                    var assignments = students[row].cells;
-                    for (var an = 0; an < assignments.length; an++) {
-                        for (var attr = 0; attr < assignments[an].attributes.length; attr++) {
-                            if (assignments[an].attributes[attr].name == "data-an" &&
-                                assignments[an].attributes[attr].value == Assignment) {
-
-                                assignments[an].children[0].textContent = StudentScore;
-                                assignments[an].dispatchEvent(new MouseEvent("click", {
-                                    "view": window,
-                                    "bubbles": true,
-                                    "cancelable": false
-                                }));
-                                assignments[an].dispatchEvent(new Event("keypress", {which: 13}));
-                            }
-                        }
-                    }
-            }
-        }
+    for (var i=0; i<=Assignments.length;i++){
+	    for (var row = 0; row < students.length; row++) {
+	        for (var sn = 0; sn < students[row].attributes.length; sn++) {
+	            if (students[row].attributes[sn].name == "data-sn" &&
+	                students[row].attributes[sn].value == StudentNumber) {
+	                foundName = true;
+	                    var assignments = students[row].cells;
+	                    for (var an = 0; an < assignments.length; an++) {
+	                        for (var attr = 0; attr < assignments[an].attributes.length; attr++) {
+	                            if (assignments[an].attributes[attr].name == "data-an" &&
+	                                assignments[an].attributes[attr].value == Assignments[i]) {
+	
+	                                assignments[an].children[0].textContent = StudentScore[i];
+	                                assignments[an].dispatchEvent(new MouseEvent("click", {
+	                                    "view": window,
+	                                    "bubbles": true,
+	                                    "cancelable": false
+	                                }));
+	                                assignments[an].dispatchEvent(new Event("keypress", {which: 13}));
+	                            }
+	                        }
+	                    }
+	            }
+	        }
+	    }
     }
     if (!foundName) {
         var notFound = "Could not find student numbers:\n";
@@ -132,11 +134,11 @@ var sendToContentScript = function(message, command){
     window.postMessage({ text: message, command: command}, '*');
 };
 
-var handleImport = function (scores, identType, assignment) {
+var handleImport = function (scores, identType, assignments) {
     var scoresTable = createScoresTable(scores, identType);
     var notFoundList = "";
     for (var student in scoresTable) {
-        notFoundList += inputScore(scoresTable[student].StuNum, scoresTable[student].Score, assignment);
+        notFoundList += inputScore(scoresTable[student].StuNum, scoresTable[student].Score, assignments);
     }
     if (notFoundList != "")
     {
@@ -145,13 +147,12 @@ var handleImport = function (scores, identType, assignment) {
 }
 
 window.addEventListener('message', function (event) {
-    console.log("message");
     if (event.origin != "https://teacherportal.abcusd.us") {
         return false;
     } else {
         switch(event.data.text.command) {
             case "import":
-                handleImport(event.data.text.scores, event.data.text.identtype, event.data.text.assignment);
+                handleImport(event.data.text.scores, event.data.text.identtype, event.data.text.assignments);
                 break;
             case "getRoster":
                 var roster = repackRoster();
